@@ -10,14 +10,22 @@ const open = function () {
   overlay.classList.remove('hidden');
 };
 
-for (let i = 0; i < openModal.length; i++) {
-  openModal[i].addEventListener('click', open);
-}
-
 const close = function () {
   modal.classList.add('hidden');
   overlay.classList.add('hidden');
 };
 
+for (let i = 0; i < openModal.length; i++) {
+  openModal[i].addEventListener('click', open);
+}
+
 closeModal.addEventListener('click', close);
 overlay.addEventListener('click', close);
+
+// Handelling an "ESC" keypress events:
+document.addEventListener('keydown', function (e) {
+  console.log(e.key);
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    close();
+  }
+});
